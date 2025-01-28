@@ -26,6 +26,12 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/getItem")
+    public Products getById(@RequestParam int id) {
+        return productsService.getById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
     @SecurityRequirement(name = "Bearer Authentication")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN', 'ROLE_ADMIN')")
     @PostMapping("/add")

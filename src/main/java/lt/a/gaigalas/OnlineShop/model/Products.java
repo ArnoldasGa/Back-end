@@ -22,14 +22,31 @@ public class Products {
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Categorys category;
 
-    public Products(String name, String description, Categorys category) {
+    @Column(nullable = false)
+    private double price;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
+    private Country country;
+
+    public Products(String name, String description, Categorys category, double price, Country country) {
         this.name = name;
         this.description = description;
         this.category = category;
+        this.price = price;
+        this.country = country;
     }
 
     public Products() {
 
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public Integer getId() {
@@ -62,5 +79,13 @@ public class Products {
 
     public void setCategory(Categorys category) {
         this.category = category;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

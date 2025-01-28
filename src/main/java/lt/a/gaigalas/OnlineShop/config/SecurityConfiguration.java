@@ -49,7 +49,7 @@ public class SecurityConfiguration {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/**", "/categories/", "/products/", "/google", "/oauth2/**")
+                .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/**", "/categories/", "/products/**", "/google", "/oauth2/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
